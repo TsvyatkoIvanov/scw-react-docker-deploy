@@ -62,6 +62,7 @@ jobs:
           scw k8s kubeconfig install ${{ secrets.SCW_CLUSTER_ID }}
       - name: Deploy new image to staging namespace
         run: |
+          sudo -ls
           cd k8s/overlays/staging
           kustomize edit set image ghcr.io/tsvyatkoivanov/scw-test:${{ steps.get_sha.outputs.sha_short }}
           kustomize build | kubectl apply -f-
