@@ -30,6 +30,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: tsvyatko/scw-test:${{ steps.get_sha.outputs.sha_short }}
+          tags: tsvyatko/scw-test
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
