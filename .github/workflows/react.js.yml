@@ -30,6 +30,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: tsvyatko/scw-test
+          tags: tsvyatko/scw-test:latest
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
