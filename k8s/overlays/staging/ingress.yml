@@ -7,12 +7,12 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
   namespace: default
 spec:
-  tls:
-    - hosts:
-        - https://test.24bba794-f712-4fb6-92a3-649ad4b9a2b3.nodes.k8s.fr-par.scw.cloud
-      secretName: default-token-p7vdn
+  # tls:
+  #   - hosts:
+  #       - https://test.24bba794-f712-4fb6-92a3-649ad4b9a2b3.nodes.k8s.fr-par.scw.cloud
+  #     secretName: default-token-p7vdn
   rules:
-    - host: https://test.24bba794-f712-4fb6-92a3-649ad4b9a2b3.nodes.k8s.fr-par.scw.cloud
+    - host: http://test.24bba794-f712-4fb6-92a3-649ad4b9a2b3.nodes.k8s.fr-par.scw.cloud
       http:
         paths:
           - path: /
