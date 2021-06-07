@@ -13,7 +13,7 @@ images:
 
 # replicas:
 #   - count: 1
-#     name: scw-test
+#     name: scw-fe-test
 
 patchesStrategicMerge:
   - ingress.yml
