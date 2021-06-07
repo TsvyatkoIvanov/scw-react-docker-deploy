@@ -2,14 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: scw-test
-  name: scw-test
+    app: scwtest
+  name: scwtest
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: scw-test
+      app: scwtest
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,10 +18,10 @@ spec:
   template:
     metadata:
       labels:
-        app: scw-test
+        app: scwtest
     spec:
       containers:
-        - name: scw-test
+        - name: scwtest
           image: ghcr.io/tsvyatkoivanov/scw-test:latest
           imagePullPolicy: Always
           ports:

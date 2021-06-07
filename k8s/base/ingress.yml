@@ -13,6 +13,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: scw-test
+                name: scwtest
                 port:
                   number: 80
