@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: test
-  name: test
+    app: scw-test
+  name: scw-test
 spec:
   selector:
-    app: test
+    app: scw-test
   ports:
     - port: 80
       targetPort: 80
