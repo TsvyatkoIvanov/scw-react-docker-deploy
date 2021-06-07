@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: scw-test-ingress
+  annotations:
+spec:
+  rules:
+    - host: localhost
+      http:
+        paths:
+          - paths: /
+            pathType: Prefix
+            backend:
+              service:
+                name: scw-test
+                port:
+                  number: 80
