@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: scw-fe-test
-          image: ghcr.io/tsvyatkoivanov/scw-test:latest
+          image: ghcr.io/tsvyatkoivanov/scw-fe-test:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
