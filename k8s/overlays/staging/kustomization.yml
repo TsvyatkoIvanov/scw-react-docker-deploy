@@ -9,7 +9,7 @@ namespace: default
 
 images:
   - name: ghcr.io/tsvyatkoivanov/scw-fe-test
-    newTag: latest
+    newTag: ag35423
 
 # replicas:
 #   - count: 1
