@@ -4,6 +4,7 @@ metadata:
   labels:
     app: scw-test
   name: scw-test
+  namespace: default
 spec:
   selector:
     app: scw-test

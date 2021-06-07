@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: scw-test-ingress
   annotations:
+  namespace: default
 spec:
   rules:
     - host: localhost

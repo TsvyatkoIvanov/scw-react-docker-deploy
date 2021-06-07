@@ -4,6 +4,7 @@ metadata:
   labels:
     app: scw-test
   name: scw-test
+  namespace: default
 spec:
   type: NodePort
   ports:
