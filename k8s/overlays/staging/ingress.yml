@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - https://24bba794-f712-4fb6-92a3-649ad4b9a2b3.api.k8s.fr-par.scw.cloud:6443
+        - https://test.24bba794-f712-4fb6-92a3-649ad4b9a2b3.nodes.k8s.fr-par.scw.cloud
       secretName: default-token-p7vdn
   rules:
-    - host: https://24bba794-f712-4fb6-92a3-649ad4b9a2b3.api.k8s.fr-par.scw.cloud:6443
+    - host: https://test.24bba794-f712-4fb6-92a3-649ad4b9a2b3.nodes.k8s.fr-par.scw.cloud
       http:
         paths:
           - path: /
