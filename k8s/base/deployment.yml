@@ -2,14 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: scw-test
-  name: scw-test
+    app: scw-fe-test
+  name: scw-fe-test
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: scw-test
+      app: scw-fe-test
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,10 +18,10 @@ spec:
   template:
     metadata:
       labels:
-        app: scw-test
+        app: scw-fe-test
     spec:
       containers:
-        - name: scw-test
+        - name: scw-fe-test
           image: ghcr.io/tsvyatkoivanov/scw-test:latest
           imagePullPolicy: Always
           ports:
@@ -33,3 +33,5 @@ spec:
             limits:
               memory: '256Mi'
               cpu: '0.25'
+    #imagePullSecrets:
+    #- name: dockerconfigjson-github-com

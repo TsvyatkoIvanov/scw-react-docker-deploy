@@ -2,9 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 commonLabels:
-  app: scw-test
-  environment: staging
-  namespace: default
+  app: scw-fe-test
+  environment: fe-staging
 
 resources:
   - deployment.yml
@@ -12,5 +11,5 @@ resources:
   - service.yml
 
 images:
-  - name: ghcr.io/tsvyatkoivanov/scw-test
+  - name: ghcr.io/tsvyatkoivanov/scw-fe-test
     newTag: latest

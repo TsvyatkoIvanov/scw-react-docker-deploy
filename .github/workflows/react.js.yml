@@ -30,7 +30,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/tsvyatkoivanov/scw-test:${{ steps.get_sha.outputs.sha_short }}
+          tags: ghcr.io/tsvyatkoivanov/scw-fe-test:${{ steps.get_sha.outputs.sha_short }}
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
   deploy:
@@ -63,7 +63,7 @@ jobs:
       - name: Deploy new image to staging namespace
         run: |
           cd k8s/overlays/staging
-          kustomize edit set image ghcr.io/tsvyatkoivanov/scw-test:${{ steps.get_sha.outputs.sha_short }}
+          kustomize edit set image ghcr.io/tsvyatkoivanov/scw-fe-test:${{ steps.get_sha.outputs.sha_short }}
           kustomize build | kubectl apply -f-
       - name: Cleanup
         run: |

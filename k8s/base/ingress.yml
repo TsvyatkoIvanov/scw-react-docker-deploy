@@ -1,9 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: scw-test-ingress
+  name: scw-fe-test-ingress
   annotations:
-  namespace: default
 spec:
   rules:
     - host: localhost
@@ -13,6 +12,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: scw-test
+                name: scw-fe-test
                 port:
                   number: 80
