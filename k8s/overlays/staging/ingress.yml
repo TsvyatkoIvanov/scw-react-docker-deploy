@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: test-ingress
+  name: scw-test-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -18,6 +18,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: test
+                name: scw-test
                 port:
                   number: 80
