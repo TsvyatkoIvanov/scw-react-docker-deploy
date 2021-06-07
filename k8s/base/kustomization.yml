@@ -3,7 +3,7 @@ kind: Kustomization
 
 commonLabels:
   app: scw-test
-  environment: dev
+  environment: default
 
 resources:
   - deployment.yml
