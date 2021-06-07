@@ -32,5 +32,3 @@ spec:
             limits:
               memory: '256Mi'
               cpu: '0.25'
-      imagePullSecrets:
-        - name: dockerconfigjson-github-com
