@@ -10,11 +10,11 @@ spec:
   selector:
     matchLabels:
       app: scw-fe-test
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+  # strategy:
+  #   rollingUpdate:
+  #     maxSurge: 25%
+  #     maxUnavailable: 25%
+  #   type: RollingUpdate
   template:
     metadata:
       labels:
@@ -23,15 +23,15 @@ spec:
       containers:
         - name: scw-fe-test
           image: ghcr.io/tsvyatkoivanov/scw-fe-test:latest
-          imagePullPolicy: Always
+          # imagePullPolicy: Always
           ports:
-            - containerPort: 80
-          resources:
-            requests:
-              memory: '128Mi'
-              cpu: '0.10'
-            limits:
-              memory: '256Mi'
-              cpu: '0.25'
+            - containerPort: 8080
+          # resources:
+          #   requests:
+          #     memory: '128Mi'
+          #     cpu: '0.10'
+          #   limits:
+          #     memory: '256Mi'
+          #     cpu: '0.25'
     #imagePullSecrets:
     #- name: dockerconfigjson-github-com
