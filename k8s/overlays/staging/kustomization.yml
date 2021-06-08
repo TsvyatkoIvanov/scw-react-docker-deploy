@@ -5,7 +5,7 @@ commonLabels:
   app: scw-fe-test
   environment: fe-staging
 
-namespace: staging
+namespace: default
 
 images:
   - name: ghcr.io/tsvyatkoivanov/scw-fe-test
