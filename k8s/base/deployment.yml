@@ -4,7 +4,7 @@ metadata:
   labels:
     app: scw-fe-test
   name: scw-fe-test
-  namespace: default
+  namespace: staging
 spec:
   replicas: 1
   selector:
@@ -25,7 +25,7 @@ spec:
           image: ghcr.io/tsvyatkoivanov/scw-fe-test:latest
           # imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           # resources:
           #   requests:
           #     memory: '128Mi'
