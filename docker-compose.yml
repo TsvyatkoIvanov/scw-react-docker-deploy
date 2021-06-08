@@ -1,11 +1,23 @@
-version: '3.7'
-services:
-nginx-react:
-container_name: ngixreactapp
-build:
-context: .
-dockerfile: Dockerfile
-ports:
-  - 80:80
-environment:
-NODE_ENV: develop
+static:
+  # nginx config
+  image: nginx
+  volumes:
+    - ./files:/usr/share/nginx/html:ro
+
+  container_name: static-files
+  restart: unless-stopped
+  networks:
+    - traefik
+  labels:
+    # Match on the hostname and the path
+    - traefik.http.routers.nginx.rule=Host(`app.temis.ai`)
+    # - traefik.http.routers.nginx.tls=true
+    - traefik.http.routers.nginx.tls=false
+    # - traefik.http.routers.nginx.tls.certresolver=le
+    - traefik.http.services.nginx.loadbalancer.server.port=80
+
+    # Define a new middleware to strip the URL prefix before sending it to nginx
+    - traefik.http.middlewares.nginx-stripprefix.stripprefix.prefixes=/static
+
+    # tell Traefik which middlewares we want to use on this container
+    - traefik.http.routers.nginx.middlewares=gzip@docker,nginx-stripprefix@docker
