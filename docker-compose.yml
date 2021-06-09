@@ -26,18 +26,18 @@ services:
     volumes:
       - "./letsencrypt:/letsencrypt"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-
       networks:
       - traefik-public
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.traefik.tls=true"
-      - "traefik.http.routers.traefik.rule=Host(`app.temis.ai`)"
-      - "traefik.http.routers.traefik.service=api@internal"
-      - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
-      - "traefik.http.routers.http-catchall.entrypoints=web"
-      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https@docker"
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+    deploy: 
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.traefik.tls=true"
+        - "traefik.http.routers.traefik.rule=Host(`app.temis.ai`)"
+        - "traefik.http.routers.traefik.service=api@internal"
+        - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+        - "traefik.http.routers.http-catchall.entrypoints=web"
+        - "traefik.http.routers.http-catchall.middlewares=redirect-to-https@docker"
+        - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
 
   scw-fe-test:
     image: ghcr.io/tsvyatkoivanov/scw-fe-test
@@ -45,16 +45,17 @@ services:
     networks: 
       - traefik-public
     restart: always
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.services.scw-fe-test-service.loadbalancer.server.port=8080"
-      - "traefik.http.routers.scw-fe-test.rule=Host(`app.temis.ai`)"
-      - "traefik.http.routers.scw-fe-test.entrypoints=web"
-      - "traefik.http.routers.scw-fe-test.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.scw-fe-test.tls.certresolver=scw-fe-test-cert
-      # use compression
-      - "traefik.http.routers.scw-fe-test.middlewares=test-compress"
-      - "traefik.http.middlewares.test-compress.compress=true"
+    deploy: 
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.services.scw-fe-test-service.loadbalancer.server.port=8080"
+        - "traefik.http.routers.scw-fe-test.rule=Host(`app.temis.ai`)"
+        - "traefik.http.routers.scw-fe-test.entrypoints=web"
+        - "traefik.http.routers.scw-fe-test.rule=PathPrefix(`/`)"
+        - "traefik.http.routers.scw-fe-test.tls.certresolver=scw-fe-test-cert
+        # use compression
+        - "traefik.http.routers.scw-fe-test.middlewares=test-compress"
+        - "traefik.http.middlewares.test-compress.compress=true"
 
 networks:
   traefik-public:
