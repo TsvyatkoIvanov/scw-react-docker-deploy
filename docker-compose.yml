@@ -1,23 +1,54 @@
-static:
-  # nginx config
-  image: nginx
-  volumes:
-    - ./files:/usr/share/nginx/html:ro
+version: "3.8"
 
-  container_name: static-files
-  restart: unless-stopped
-  networks:
-    - traefik
-  labels:
-    # Match on the hostname and the path
-    - traefik.http.routers.nginx.rule=Host(`app.temis.ai`)
-    # - traefik.http.routers.nginx.tls=true
-    - traefik.http.routers.nginx.tls=false
-    # - traefik.http.routers.nginx.tls.certresolver=le
-    - traefik.http.services.nginx.loadbalancer.server.port=80
+services:
+  traefik:
+    image: "traefik:v2.4"
+    container_name: "traefik"
+    command:
+      # - "--log.level=DEBUG"
+      # - "--api.insecure=true"
+      - "--providers.docker"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=traefik-public"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.scw-fe-test-cert.acme.tlschallenge=true"
+      - "--certificatesresolvers.scw-fe-test-cert.acme.email=tsvyatko.ivanov@primeholding.com"
+      - "--certificatesresolvers.scw-fe-test-cert.acme.storage=/letsencrypt/acme.json"
+      # redirect port 80 -> 443
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
+    ports:
+      - "443:443"
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
-    # Define a new middleware to strip the URL prefix before sending it to nginx
-    - traefik.http.middlewares.nginx-stripprefix.stripprefix.prefixes=/static
+      networks:
+      - traefik-public
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.rule=Host(`app.temis.ai`)"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.http-catchall.entrypoints=web"
+      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https@docker"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
 
-    # tell Traefik which middlewares we want to use on this container
-    - traefik.http.routers.nginx.middlewares=gzip@docker,nginx-stripprefix@docker
+  scw-fe-test:
+    image: ghcr.io/tsvyatkoivanov/scw-fe-test
+    container_name: "scw-fe-test"
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.scw-fe-test.rule=Host(`app.temis.ai`)"
+      - "traefik.http.routers.scw-fe-test.entrypoints=websecure"
+      - "traefik.http.routers.scw-fe-test.tls.certresolver=scw-fe-test-cert
+      # use compression
+      - "traefik.http.routers.scw-fe-test.middlewares=test-compress"
+      - "traefik.http.middlewares.test-compress.compress=true"
+
