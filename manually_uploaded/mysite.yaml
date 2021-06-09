@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: scw-fe-test-ingress-router
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`app.temis.ai`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: scw-fe-test
+          port: 80
+    -
+  tls:
+    secretName: scw-fe-test-cert

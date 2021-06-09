@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: scw-fe-test-cert
+  namespace: default
+spec:
+  commonName: app.temis.ai
+  secretName: scw-fe-test-cert
+  dnsNames:
+    - app.temis.ai
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
