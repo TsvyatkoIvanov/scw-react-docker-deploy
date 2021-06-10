@@ -11,17 +11,20 @@ images:
   - name: ghcr.io/tsvyatkoivanov/scw-fe-test
     newTag: ag35426
 
-# replicas:
-#   - count: 1
-#     name: scw-fe-test
-
-patchesStrategicMerge:
-  - service.yml
+replicas:
+  - count: 2
+    name: scw-fe-test
 
 resources:
   - deployment.yml
   - ingress.yml
   - service.yml
+
+patchesStrategicMerge:
+  - deployment.yml
+  - ingress.yml
+  - service.yml
+
 
 images:
   - name: ghcr.io/tsvyatkoivanov/scw-fe-test
