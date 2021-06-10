@@ -39,9 +39,9 @@ services:
         - "traefik.http.routers.http-catchall.middlewares=redirect-to-https@docker"
         - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
 
-  scw-fe-test:
-    image: ghcr.io/tsvyatkoivanov/scw-fe-test
-    container_name: "scw-fe-test"
+  scw-staging-fe-test:
+    image: ghcr.io/tsvyatkoivanov/scw-staging-fe-test
+    container_name: "scw-staging-fe-test"
     networks: 
       - traefik-public
     restart: always
@@ -51,11 +51,12 @@ services:
         - "traefik.http.services.scw-fe-test-service.loadbalancer.server.port=8080"
         - "traefik.http.routers.scw-fe-test.rule=Host(`app.24bba794-f712-4fb6-92a3-649ad4b9a2b3.nodes.k8s.fr-par.scw.cloud`)"
         - "traefik.http.routers.scw-fe-test.entrypoints=web"
-        - "traefik.http.routers.scw-fe-test.rule=PathPrefix(`/prod`)"
+        - "traefik.http.routers.scw-fe-test.rule=PathPrefix(`/staging`)"
         - "traefik.http.routers.scw-fe-test.tls.certresolver=scw-fe-test-cert
         # use compression
         - "traefik.http.routers.scw-fe-test.middlewares=test-compress"
         - "traefik.http.middlewares.test-compress.compress=true"
+
 
 networks:
   traefik-public:
