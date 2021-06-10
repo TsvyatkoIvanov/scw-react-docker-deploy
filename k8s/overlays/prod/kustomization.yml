@@ -20,6 +20,7 @@ patchesStrategicMerge:
 
 resources:
   - deployment.yml
+  - ingress.yml
   - service.yml
 
 images:
