@@ -16,12 +16,10 @@ images:
 #     name: scw-staging-fe-test
 
 patchesStrategicMerge:
-  - ingress.yml
   - service.yml
 
 resources:
   - deployment.yml
-  - ingress.yml
   - service.yml
 
 images:
