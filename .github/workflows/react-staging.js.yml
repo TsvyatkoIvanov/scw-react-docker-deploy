@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Build and deploy Staging
 
 on:
   push:
@@ -63,7 +63,7 @@ jobs:
       - name: Deploy new image to staging namespace
         run: |
           cd k8s/overlays/staging
-          kustomize edit set image ghcr.io/tsvyatkoivanov/scw-fe-test:${{ steps.get_sha.outputs.sha_short }}
+          kustomize edit set image ghcr.io/tsvyatkoivanov/scw-staging-fe-test:${{ steps.get_sha.outputs.sha_short }}
           kustomize build | kubectl apply -f-
       - name: Cleanup
         run: |

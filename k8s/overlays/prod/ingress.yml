@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - app.temis.ai
-      secretName: default-token-vbcpt
+        - app.24bba794-f712-4fb6-92a3-649ad4b9a2b3.nodes.k8s.fr-par.scw.cloud
+      secretName: default-token-5tclp
   rules:
-    - host: app.temis.ai
+    - host: app.24bba794-f712-4fb6-92a3-649ad4b9a2b3.nodes.k8s.fr-par.scw.cloud
       http:
         paths:
           - path: /staging
