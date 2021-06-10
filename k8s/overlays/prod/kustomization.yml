@@ -5,7 +5,7 @@ commonLabels:
   app: scw-fe-test
   environment: fe-prod
 
-namespace: prod
+namespace: default
 
 images:
   - name: ghcr.io/tsvyatkoivanov/scw-fe-test
@@ -17,14 +17,11 @@ replicas:
 
 resources:
   - deployment.yml
-  - ingress.yml
   - service.yml
 
 patchesStrategicMerge:
   - deployment.yml
-  - ingress.yml
   - service.yml
-
 
 images:
   - name: ghcr.io/tsvyatkoivanov/scw-fe-test

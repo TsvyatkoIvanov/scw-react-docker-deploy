@@ -4,7 +4,7 @@ metadata:
   labels:
     app: scw-fe-test
   name: scw-fe-test
-  namespace: prod
+  namespace: default
 spec:
   replicas: 1
   selector:

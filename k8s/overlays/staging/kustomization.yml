@@ -5,23 +5,24 @@ commonLabels:
   app: scw-staging-fe-test
   environment: fe-staging
 
-namespace: staging
+namespace: default
 
 images:
   - name: ghcr.io/tsvyatkoivanov/scw-staging-fe-test
     newTag: ag35423
 
-# replicas:
-#   - count: 1
-#     name: scw-staging-fe-test
-
-patchesStrategicMerge:
-  - service.yml
+replicas:
+  - count: 2
+    name: scw-staging-fe-test
 
 resources:
   - deployment.yml
   - service.yml
 
+patchesStrategicMerge:
+  - deployment.yml
+  - service.yml
+  
 images:
   - name: ghcr.io/tsvyatkoivanov/scw-staging-fe-test
     newTag: latest
