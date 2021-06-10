@@ -2,22 +2,29 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 commonLabels:
-  app: scw-fe-test
+  app: scw-staging-fe-test
   environment: fe-staging
 
-namespace: default
+namespace: staging
 
 images:
-  - name: ghcr.io/tsvyatkoivanov/scw-fe-test
+  - name: ghcr.io/tsvyatkoivanov/scw-staging-fe-test
     newTag: ag35423
 
 # replicas:
 #   - count: 1
-#     name: scw-fe-test
+#     name: scw-staging-fe-test
 
 patchesStrategicMerge:
   - ingress.yml
   - service.yml
 
 resources:
-  - ../../base
+  - deployment.yml
+  - ingress.yml
+  - service.yml
+
+images:
+  - name: ghcr.io/tsvyatkoivanov/scw-staging-fe-test
+    newTag: latest
+

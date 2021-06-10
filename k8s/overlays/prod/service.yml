@@ -5,11 +5,10 @@ metadata:
     app: scw-fe-test
   name: scw-fe-test
 spec:
-  type: NodePort
+  selector:
+    app: scw-fe-test
   ports:
     - port: 80
       targetPort: 80
       protocol: TCP
       name: http
-  selector:
-    app: scw-fe-test

@@ -9,5 +9,5 @@ spec:
   dnsNames:
     - app.temis.ai
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-prod
     kind: ClusterIssuer

@@ -9,7 +9,7 @@ spec:
   tls:
     - hosts:
         - app.temis.ai
-      secretName: default-token-5tclp
+      secretName: default-token-vbcpt
   rules:
     - host: app.temis.ai
       http:

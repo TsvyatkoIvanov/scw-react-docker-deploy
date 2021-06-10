@@ -12,6 +12,11 @@ spec:
       services:
         - name: scw-fe-test
           port: 80
+    - match: Host(`app.temis.ai`) && PathPrefix(`/staging`)
+      kind: Rule
+      services:
+        - name: scw-staging-fe-test
+          port: 80
     -
   tls:
     secretName: scw-fe-test-cert

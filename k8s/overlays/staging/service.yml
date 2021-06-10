@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: scw-fe-test
-  name: scw-fe-test
+    app: scw-staging-fe-test
+  name: scw-staging-fe-test
 spec:
   selector:
-    app: scw-fe-test
+    app: scw-staging-fe-test
   ports:
     - port: 80
       targetPort: 80
