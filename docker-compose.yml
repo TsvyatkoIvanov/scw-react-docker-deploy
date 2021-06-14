@@ -32,7 +32,7 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.traefik.tls=true"
-        - "traefik.http.routers.traefik.rule=Host(`app.24bba794-f712-4fb6-92a3-649ad4b9a2b3.nodes.k8s.fr-par.scw.cloud`)"
+        - "traefik.http.routers.traefik.rule=Host(`app.temis.ai`)"
         - "traefik.http.routers.traefik.service=api@internal"
         - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
         - "traefik.http.routers.http-catchall.entrypoints=web"
@@ -49,7 +49,7 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.services.scw-fe-test-service.loadbalancer.server.port=8080"
-        - "traefik.http.routers.scw-fe-test.rule=Host(`app.24bba794-f712-4fb6-92a3-649ad4b9a2b3.nodes.k8s.fr-par.scw.cloud`)"
+        - "traefik.http.routers.scw-fe-test.rule=Host(`app.temis.ai`)"
         - "traefik.http.routers.scw-fe-test.entrypoints=web"
         - "traefik.http.routers.scw-fe-test.rule=PathPrefix(`/`)"
         - "traefik.http.routers.scw-fe-test.tls.certresolver=scw-fe-test-cert
