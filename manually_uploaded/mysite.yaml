@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`app.temis.ai`) && PathPrefix(`/`)
+    - match: Host(`app.24bba794-f712-4fb6-92a3-649ad4b9a2b3.nodes.k8s.fr-par.scw.cloud`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: scw-fe-test
